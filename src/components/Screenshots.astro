@@ -1,0 +1,71 @@
+---
+const screenshots = [
+  {
+    url: '/images/screenshots/01_home.png',
+    title: 'Home - Start an event session'
+  },
+  {
+    url: '/images/screenshots/02_camera.png',
+    title: 'Camera - Countdown & capture'
+  },
+  {
+    url: '/images/screenshots/03_license.png',
+    title: 'Upgrade - Personal & Business tiers'
+  },
+  {
+    url: '/images/screenshots/04_settings.png',
+    title: 'Settings - Camera, printer & kiosk mode'
+  }
+];
+---
+
+<section class="py-20 bg-gray-50" aria-label="App Screenshots">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Screenshots</h2>
+      <p class="text-gray-600 mb-12 text-lg">See JustBooth in action</p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {screenshots.map((screenshot) => (
+          <div class="group">
+            <img
+              src={screenshot.url}
+              alt={screenshot.title}
+              loading="lazy"
+              class="w-full rounded-xl border border-gray-200 hover:border-gray-300 transition-colors shadow-sm cursor-pointer"
+              onclick={`openModal('${screenshot.url}', '${screenshot.title}')`}
+            />
+            <p class="text-sm text-gray-600 mt-3 text-center">{screenshot.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Full-screen Modal -->
+<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onclick="closeModal()" aria-label="Screenshot viewer">
+  <img id="modal-img" class="max-w-[80vw] max-h-[80vh]" alt="" />
+</div>
+
+<script>
+  declare global {
+    interface Window {
+      openModal(src: string, alt: string): void;
+      closeModal(): void;
+    }
+  }
+
+  window.openModal = function(src: string, alt: string): void {
+    const imgEl = document.getElementById('modal-img') as HTMLImageElement;
+    const modalEl = document.getElementById('modal') as HTMLElement;
+    imgEl.src = src;
+    imgEl.alt = alt;
+    modalEl.classList.remove('hidden');
+  };
+
+  window.closeModal = function(): void {
+    const modalEl = document.getElementById('modal') as HTMLElement;
+    modalEl.classList.add('hidden');
+  };
+</script>

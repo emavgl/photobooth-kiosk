@@ -1,0 +1,100 @@
+---
+---
+<section class="relative bg-white overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-violet-50 via-white to-fuchsia-50 pointer-events-none"></div>
+  <div class="relative container mx-auto px-6 py-20 md:py-28">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-violet-600 font-semibold tracking-wide uppercase text-sm mb-4">DIY Photo Booth for Android</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+        Turn any device into a
+        <span class="block min-h-[1.2em]">
+          <span id="typed-text" class="text-violet-600"></span><span id="cursor" class="cursor">|</span>
+        </span>
+      </h1>
+      <p class="text-xl text-gray-600 leading-relaxed">
+        JustBooth turns any Android phone or tablet into a self-contained photo booth — no extra hardware, no complicated setup. Countdown timer, instant print or share, and kiosk mode for your event.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://play.google.com/store/apps/details?id=eu.viglianisi.photobooth"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center justify-center px-6 py-3 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors font-semibold text-sm shadow-sm">
+          Get it on Google Play
+        </a>
+        <a href="/plans"
+           class="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-50 transition-colors font-semibold text-sm border border-gray-200 shadow-sm">
+          View Plans
+        </a>
+        <a href="https://viglianisi.eu/posts/photo-booth-for-wedding/"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-50 transition-colors font-semibold text-sm border border-gray-200 shadow-sm">
+          Read the Blog Post
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-gray-500">Free to download · No account · Works fully offline</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cursor {
+    display: inline-block;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+</style>
+
+<script>
+  const typedTextElement = document.getElementById('typed-text') as HTMLElement;
+  const cursorElement = document.getElementById('cursor') as HTMLElement;
+
+  const phrases = ['Photo Booth', 'Event Station', 'Memory Machine'];
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let isPaused = false;
+
+  function type() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isPaused) {
+      setTimeout(type, 1500);
+      isPaused = false;
+      return;
+    }
+
+    if (!isDeleting && charIndex <= currentPhrase.length) {
+      typedTextElement.textContent = currentPhrase.substring(0, charIndex);
+      charIndex++;
+
+      if (charIndex > currentPhrase.length) {
+        if (phraseIndex === phrases.length - 1) {
+          cursorElement.style.display = 'none';
+          return;
+        }
+        isDeleting = true;
+        isPaused = true;
+      }
+      setTimeout(type, 100);
+    } else if (isDeleting && charIndex >= 0) {
+      typedTextElement.textContent = currentPhrase.substring(0, charIndex);
+      charIndex--;
+
+      if (charIndex < 0) {
+        isDeleting = false;
+        phraseIndex++;
+        charIndex = 0;
+      }
+      setTimeout(type, 50);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(type, 500);
+  });
+</script>

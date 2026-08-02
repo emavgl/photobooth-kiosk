@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Plans – JustBooth"
+  description="Simple plans for every event. Start free with the full photo booth experience and upgrade to remove the watermark or add your own branding. Billed securely via Google Play.">
+
+  <section class="relative bg-white overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-violet-50 via-white to-fuchsia-50 pointer-events-none"></div>
+    <div class="relative container mx-auto px-6 py-20 md:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+          <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">Simple plans for every event</h1>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Start free and upgrade whenever you need more. All subscriptions are billed securely through Google Play — no accounts, no sign-up.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 items-stretch">
+          <!-- Free -->
+          <article class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
+            <h2 class="text-xl font-bold text-gray-900 mb-1">Free</h2>
+            <p class="text-sm text-gray-500 mb-4">The complete photo booth, ready to go.</p>
+            <p class="text-3xl font-extrabold text-gray-900 mb-6">Free</p>
+            <ul class="space-y-3 text-sm text-gray-700 flex-1 mb-8">
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Built-in camera, Olympus mirrorless or a remote phone as camera</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Configurable countdown with instant on-screen results</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Print via any printing app — Bluetooth, Wi-Fi or USB</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Share photos instantly or save them to the gallery</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> True kiosk mode with admin lock</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Event galleries and live photo counter</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> No account, no ads, works fully offline</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Photos include a subtle “Made with JustBooth” watermark</li>
+            </ul>
+            <a href="https://play.google.com/store/apps/details?id=eu.viglianisi.photobooth"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="block text-center px-6 py-3 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors font-semibold text-sm shadow-sm">
+              Download for free
+            </a>
+          </article>
+
+          <!-- Personal -->
+          <article class="bg-white p-8 rounded-2xl border-2 border-violet-600 shadow-md flex flex-col">
+            <span class="inline-block self-start text-xs font-semibold uppercase tracking-wide text-violet-700 bg-violet-50 px-3 py-1 rounded-full mb-4">Most popular</span>
+            <h2 class="text-xl font-bold text-gray-900 mb-1">Personal</h2>
+            <p class="text-sm text-gray-500 mb-4">For birthdays, weddings and private celebrations.</p>
+            <p class="text-sm text-gray-700 mb-6"><span class="font-semibold text-gray-900">Everything in Free, plus:</span></p>
+            <ul class="space-y-3 text-sm text-gray-700 flex-1 mb-8">
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Removes the watermark from your photos</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Customize the booth appearance</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Custom kiosk title, action buttons and countdown message</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Choose your own photo save location</li>
+            </ul>
+            <a href="https://play.google.com/store/apps/details?id=eu.viglianisi.photobooth"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="block text-center px-6 py-3 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors font-semibold text-sm shadow-sm">
+              Get it on Google Play
+            </a>
+          </article>
+
+          <!-- Business -->
+          <article class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
+            <h2 class="text-xl font-bold text-gray-900 mb-1">Business</h2>
+            <p class="text-sm text-gray-500 mb-4">For professional photo booth services.</p>
+            <p class="text-sm text-gray-700 mb-6"><span class="font-semibold text-gray-900">Everything in Personal, plus:</span></p>
+            <ul class="space-y-3 text-sm text-gray-700 flex-1 mb-8">
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Your logo and custom banner on every photo</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> White-label branding</li>
+              <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Build a consistent brand at every event you run</li>
+            </ul>
+            <a href="https://play.google.com/store/apps/details?id=eu.viglianisi.photobooth"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="block text-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-semibold text-sm shadow-sm">
+              Get it on Google Play
+            </a>
+          </article>
+        </div>
+
+        <div class="mt-12 bg-gray-50 border border-gray-200 rounded-2xl p-8 max-w-3xl mx-auto">
+          <h2 class="text-lg font-bold text-gray-900 mb-3">Billing</h2>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Personal and Business are subscriptions billed securely via Google Play — the same account you use to download the app.</li>
+            <li>• Both are available with monthly or yearly billing; yearly plans are the best value.</li>
+            <li>• Subscriptions renew automatically and you can cancel anytime from your Google Play account.</li>
+            <li>• Prices are shown in the app before you confirm any purchase.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

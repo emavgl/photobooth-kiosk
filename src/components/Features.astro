@@ -1,0 +1,76 @@
+---
+const features = [
+  {
+    title: 'Your Camera, Your Way',
+    description: 'Works with the built-in camera on any Android device, supports Olympus mirrorless cameras over Wi-Fi, or use another Android phone as a remote camera.',
+    icon: 'camera'
+  },
+  {
+    title: 'Countdown & Instant Results',
+    description: 'Configurable 3–10 second countdown with a custom message, then the photo appears instantly on the big screen with a fun compliment.',
+    icon: 'timer'
+  },
+  {
+    title: 'Print Your Photos',
+    description: 'Works with any printing app on your device — Bluetooth, Wi-Fi, or USB. Pick a specific printer app or use the system default.',
+    icon: 'print'
+  },
+  {
+    title: 'Share on the Spot',
+    description: 'No printer? No problem. Share photos instantly via any app on the device, or save them to the gallery and send them to guests later.',
+    icon: 'share'
+  },
+  {
+    title: 'True Kiosk Mode',
+    description: 'Fullscreen, screen always on, Home button locked to the booth. Guests stay inside the photo experience the whole event.',
+    icon: 'kiosk'
+  },
+  {
+    title: 'Secure Admin Lock',
+    description: 'A PIN or biometric lock keeps settings out of guests\' hands while you stay fully in control, mid-event.',
+    icon: 'lock'
+  },
+  {
+    title: 'Event Management',
+    description: 'Group photos by event session, browse the event gallery, and watch the photo counter grow as the night goes on.',
+    icon: 'folder'
+  },
+  {
+    title: 'Offline & Private',
+    description: 'No account, no data collection, no ads. Photos stay on your device and everything works fully offline at your event.',
+    icon: 'shield'
+  }
+];
+
+const icons = {
+  camera: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/></svg>`,
+  timer: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+  print: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5z"/></svg>`,
+  share: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/></svg>`,
+  kiosk: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>`,
+  lock: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>`,
+  folder: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg>`,
+  shield: `<svg class="w-6 h-6 text-violet-600 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>`
+};
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Features</h2>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">Everything you need for a fun, professional photo station — nothing you don't.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {features.map((feature) => (
+          <article class="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:border-violet-200 hover:shadow-sm transition-all">
+            <Fragment set:html={icons[feature.icon]} />
+            <h3 class="text-base font-semibold text-gray-900 mb-2">{feature.title}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
