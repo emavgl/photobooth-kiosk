@@ -31,6 +31,8 @@ const screenshots = [
             <img
               src={screenshot.url}
               alt={screenshot.title}
+              width="1080"
+              height="2400"
               loading="lazy"
               class="w-full rounded-xl border border-gray-200 hover:border-gray-300 transition-colors shadow-sm cursor-pointer"
               onclick={`openModal('${screenshot.url}', '${screenshot.title}')`}
