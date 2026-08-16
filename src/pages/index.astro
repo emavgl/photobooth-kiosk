@@ -3,6 +3,33 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Screenshots from '../components/Screenshots.astro';
 import Features from '../components/Features.astro';
+
+const faqs = [
+  {
+    question: 'Does JustBooth work without an internet connection?',
+    answer: 'Yes. JustBooth works fully offline at your event — no account, no data collection, no ads. Photos stay on your device and anything you print or share uses your local network.'
+  },
+  {
+    question: 'What cameras are supported?',
+    answer: 'JustBooth works with the built-in camera on any Android phone or tablet, supports Olympus mirrorless cameras over Wi-Fi, and can use another Android phone as a remote camera.'
+  },
+  {
+    question: 'Can I print photos at my event?',
+    answer: 'Yes. JustBooth sends photos to any printing app on your device — over Bluetooth, Wi-Fi, or USB. You can pick a specific printer app or use the system default.'
+  },
+  {
+    question: 'What is kiosk mode?',
+    answer: 'Kiosk mode runs JustBooth fullscreen with the screen always on and the Home button locked, so guests stay inside the photo experience all night. A PIN or biometric lock keeps settings out of their hands.'
+  },
+  {
+    question: 'How do guests get their photos?',
+    answer: 'Photos can be shared instantly via any app on the device or saved to the gallery. No printer? No problem — guests can access the event gallery and send photos to themselves later.'
+  },
+  {
+    question: 'Is there an account or sign-up?',
+    answer: 'No. There are no accounts and no sign-up. The free plan is fully functional, and paid plans remove the watermark or add branding through Google Play billing — no account needed.'
+  }
+];
 ---
 
 <Layout
@@ -11,4 +38,36 @@ import Features from '../components/Features.astro';
   <Hero />
   <Screenshots />
   <Features />
+
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Frequently asked questions</h2>
+          <p class="text-gray-500 text-lg">Everything you want to know before turning your tablet into a photo booth.</p>
+        </div>
+        <div class="space-y-4">
+          {faqs.map((faq) => (
+            <details class="bg-white rounded-xl border border-gray-200 shadow-sm group">
+              <summary class="list-none cursor-pointer px-6 py-4 font-semibold text-gray-900 flex items-center justify-between gap-4">
+                <span class="text-base md:text-lg">{faq.question}</span>
+                <span class="text-violet-600 text-lg shrink-0 transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed">{faq.answer}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+    }))
+  })} type="application/ld+json"></script>
 </Layout>
