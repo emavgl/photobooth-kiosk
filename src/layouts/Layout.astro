@@ -6,8 +6,9 @@ interface Props {
 }
 
 const { title, description = "Turn any Android phone or tablet into a fun, self-contained photo booth. Countdown timer, print, share, and kiosk mode — no account, works fully offline.", ogImage = "/images/feature_graphic.png" } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const absOgImage = new URL(ogImage, Astro.site);
+const site = Astro.site ?? new URL('https://justbooth.viglianisi.eu');
+const canonicalURL = new URL(Astro.url.pathname, site);
+const absOgImage = new URL(ogImage, site);
 const ogImageAlt = "JustBooth – turn any Android device into a photo booth";
 
 const schema = {
@@ -17,7 +18,7 @@ const schema = {
       "@type": "SoftwareApplication",
       "name": "JustBooth",
       "description": "Turn any Android phone or tablet into a self-contained photo booth — countdown timer, instant print or share, and kiosk mode.",
-      "url": Astro.site.toString(),
+      "url": site.toString(),
       "image": absOgImage.toString(),
       "sameAs": "https://play.google.com/store/apps/details?id=eu.viglianisi.photobooth",
       "applicationCategory": "EntertainmentApplication",
@@ -29,14 +30,14 @@ const schema = {
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
       },
-      "author": { "@type": "Organization", "name": "JustBooth", "sameAs": "https://play.google.com/store/apps/details?id=eu.viglianisi.photobooth" },
-      "publisher": { "@type": "Organization", "name": "JustBooth" }
+      "author": { "@type": "Person", "name": "Emanuele Viglianisi", "sameAs": "https://github.com/emavgl" },
+      "publisher": { "@type": "Person", "name": "Emanuele Viglianisi", "sameAs": "https://github.com/emavgl" }
     },
     {
       "@type": "WebSite",
       "name": "JustBooth",
       "description": "DIY photo booth app for Android",
-      "url": Astro.site.toString()
+      "url": site.toString()
     }
   ]
 };
@@ -82,9 +83,6 @@ import '../styles/global.css';
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/justbooth-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <title>{title}</title>
 
     <!-- JSON-LD Structured Data -->
