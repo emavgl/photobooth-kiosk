@@ -55,6 +55,11 @@ import Layout from '../layouts/Layout.astro';
             <span class="inline-block self-start text-xs font-semibold uppercase tracking-wide text-violet-700 bg-violet-50 px-3 py-1 rounded-full mb-4">Most popular</span>
             <h2 class="text-xl font-bold text-gray-900 mb-1">Personal</h2>
             <p class="text-sm text-gray-500 mb-4">For birthdays, weddings and private celebrations.</p>
+            <p class="text-3xl font-extrabold text-gray-900 mb-1">
+              <span data-price="personal_monthly">$4.55</span>
+              <span class="text-sm font-semibold text-gray-500">/ month</span>
+            </p>
+            <p class="text-sm text-gray-500 mb-6">or <span data-price="personal_yearly">$18.24</span> / year</p>
             <p class="text-sm text-gray-700 mb-6"><span class="font-semibold text-gray-900">Everything in Free, plus:</span></p>
             <ul class="space-y-3 text-sm text-gray-700 flex-1 mb-8">
               <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Removes the watermark from your photos</li>
@@ -74,6 +79,11 @@ import Layout from '../layouts/Layout.astro';
           <article class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
             <h2 class="text-xl font-bold text-gray-900 mb-1">Business</h2>
             <p class="text-sm text-gray-500 mb-4">For professional photo booth services.</p>
+            <p class="text-3xl font-extrabold text-gray-900 mb-1">
+              <span data-price="business_monthly">$18.28</span>
+              <span class="text-sm font-semibold text-gray-500">/ month</span>
+            </p>
+            <p class="text-sm text-gray-500 mb-6">or <span data-price="business_yearly">$114.25</span> / year</p>
             <p class="text-sm text-gray-700 mb-6"><span class="font-semibold text-gray-900">Everything in Personal, plus:</span></p>
             <ul class="space-y-3 text-sm text-gray-700 flex-1 mb-8">
               <li class="flex gap-2"><span class="text-violet-600 font-bold">✓</span> Your logo and custom banner on every photo</li>
@@ -95,7 +105,7 @@ import Layout from '../layouts/Layout.astro';
             <li>• Personal and Business are subscriptions billed securely via Google Play — the same account you use to download the app.</li>
             <li>• Both are available with monthly or yearly billing; yearly plans are the best value.</li>
             <li>• Subscriptions renew automatically and you can cancel anytime from your Google Play account.</li>
-            <li>• Prices are shown in the app before you confirm any purchase.</li>
+            <li>• Prices are shown in your local currency where available, otherwise in US dollars; the exact price is confirmed in the app before you purchase.</li>
           </ul>
           <p class="text-sm text-gray-600 mt-4">See the <a href="/terms" class="text-violet-700 hover:underline">Terms &amp; Conditions</a> for subscription, withdrawal, warranty, and complaint information.</p>
         </div>
@@ -103,3 +113,93 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+<script>
+  // Prices come from Google Play (public/prices.json, regenerated with
+  // `npm run prices`). We show the visitor's regional price when we can
+  // determine their country and it exists in the Play price list, otherwise
+  // we fall back to USD.
+  const GEO_ENDPOINT = 'https://api.country.is/';
+  const TIMEOUT_MS = 5000;
+
+  interface PriceEntry {
+    currency: string;
+    amount: number;
+  }
+
+  interface PlanPrice {
+    fallback: PriceEntry;
+    regions?: Record<string, PriceEntry>;
+  }
+
+  interface Prices {
+    plans: Record<string, PlanPrice>;
+  }
+
+  function formatPrice(entry: PriceEntry) {
+    try {
+      return new Intl.NumberFormat(navigator.language || undefined, {
+        style: 'currency',
+        currency: entry.currency,
+        currencyDisplay: 'symbol',
+      }).format(entry.amount);
+    } catch {
+      return `${entry.currency} ${entry.amount}`;
+    }
+  }
+
+  function countryFromLocale() {
+    for (const tag of navigator.languages || [navigator.language]) {
+      if (!tag) continue;
+      try {
+        const region = new Intl.Locale(tag).region;
+        if (region) return region;
+      } catch {}
+      const match = /[-_]([A-Za-z]{2})$/.exec(tag);
+      if (match) return match[1].toUpperCase();
+    }
+    return null;
+  }
+
+  async function detectCountry() {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+    try {
+      const response = await fetch(GEO_ENDPOINT, { signal: controller.signal });
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.country) return String(data.country).toUpperCase();
+      }
+    } catch {
+    } finally {
+      clearTimeout(timer);
+    }
+    return countryFromLocale();
+  }
+
+  async function applyPrices() {
+    const nodes = document.querySelectorAll<HTMLElement>('[data-price]');
+    if (nodes.length === 0) return;
+
+    let prices: Prices;
+    try {
+      const response = await fetch(`${import.meta.env.BASE_URL}prices.json`, { cache: 'no-cache' });
+      if (!response.ok) throw new Error(String(response.status));
+      prices = await response.json();
+    } catch {
+      return;
+    }
+
+    const country = await detectCountry();
+    nodes.forEach((el) => {
+      const key = el.dataset.price;
+      const plan = key ? prices.plans[key] : undefined;
+      if (!plan) return;
+      const regional = country && plan.regions ? plan.regions[country] : null;
+      const entry = regional || plan.fallback;
+      if (entry) el.textContent = formatPrice(entry);
+    });
+  }
+
+  applyPrices();
+</script>
