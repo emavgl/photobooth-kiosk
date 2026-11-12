@@ -37,7 +37,7 @@ const description = 'How JustBooth handles website, app, analytics, camera, phot
         <section class="space-y-4 mb-10">
           <h2 class="text-2xl font-bold text-gray-900">3. Local app data</h2>
           <p>JustBooth is designed to work offline and without a JustBooth account. Photos, event sessions, application settings, preferences, branding, and other app data are stored locally on your device or in files and galleries that you choose to use.</p>
-          <p>The app communicates with a connected Olympus camera over your local Wi-Fi network using the camera address configured by you. These camera-control requests are intended to remain on your local network. Photos may also be sent to printing or sharing applications selected by you, or saved to the device gallery.</p>
+          <p>The app communicates with a connected Olympus camera over your local Wi-Fi network using the camera address configured by you. It can also act as a camera server or connect to a remote phone camera over your local network. These camera-control and image-transfer requests are intended to remain on your local network. Photos may also be sent to printing or sharing applications selected by you, or saved to the device gallery.</p>
           <p>JustBooth does not upload photos, event galleries, camera images, or app settings to an Emanuele Viglianisi or JustBooth server. When you print, share, save, or upload a photo using another app or service, that recipient processes the photo under its own terms and privacy policy.</p>
         </section>
 
@@ -52,7 +52,15 @@ const description = 'How JustBooth handles website, app, analytics, camera, phot
             <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">photo_shared</code> and <code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">photo_printed</code>, including the selected print route where applicable.</li>
             <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">retake_tapped</code>.</li>
             <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">camera_error</code>, with a short error description truncated to 100 characters.</li>
+            <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">paywall_viewed</code>, including the entry-point source.</li>
+            <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">upgrade_tapped</code> and <code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">paywall_dismissed</code>, including the entry-point source.</li>
+            <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">plan_selected</code>, including the selected tier and billing period.</li>
+            <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">purchase_started</code>, including the product, tier, and billing period.</li>
+            <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">purchase_failed</code>, including the product and a billing error code.</li>
+            <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">restore_tapped</code>, including the entry-point source.</li>
+            <li><code class="text-sm bg-gray-100 rounded px-1.5 py-0.5">in_app_purchase</code>, including the product ID, tier, billing period, purchase value and currency, and the Google Play order/transaction identifier where available.</li>
           </ul>
+          <p>Purchase events contain purchase metadata and a Google Play order/transaction identifier, but no payment card details.</p>
           <p>Firebase and Google may also automatically process device, app, and usage information. The advertising identifier permission is removed from the application. Analytics data is processed by Google under <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-violet-700 hover:underline">Google's Privacy Policy</a>. Where consent is legally required for analytics, analytics must only be enabled after the relevant consent has been obtained.</p>
         </section>
 
@@ -90,7 +98,7 @@ const description = 'How JustBooth handles website, app, analytics, camera, phot
           <p>This policy may be updated when the website, application, providers, or legal requirements change. The current version is published on this page with its effective date.</p>
         </section>
 
-        <p class="text-sm text-gray-500 border-t border-gray-200 pt-6">Last updated: 22 September 2026</p>
+        <p class="text-sm text-gray-500 border-t border-gray-200 pt-6">Last updated: 12 November 2026</p>
       </article>
     </div>
   </section>
